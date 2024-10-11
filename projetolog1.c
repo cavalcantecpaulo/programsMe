@@ -1,128 +1,124 @@
+//..//
+//Paulo Cavalcante Caroba - SP3156371//
+
 /* Bibliotecas */
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
 #include<locale.h>
 
-/* Variáveis*/
-#define maxAtletismo 183                //numero de linhas máximas pra cada esporte//
-#define maxNatacao 122                 //dividindo 365 dias por 2,3,5 ou 9 dias//
-#define maxRugby 73                    //resultado igual ao numero de linhas máximas por esporte//
-#define maxJudo 41
+/*Constantes*/
+#define maxAtletismo 183
+#define maxNatacao 122 
+#define maxRugby 74  
+#define maxJudo 41  
 
-int dia, mes, ano, dias_no_mes;
+//Variáveis Globais//
+int dia, mes, ano, diasnoMes;
 
-const char* nome_dia_da_semana(int dia_da_semana); 
-void diadasemana(int dia, int mes, int ano, char *buffer);
-int ano_bissexto(int ano);
-void ajustar_data(int *dia, int *mes, int *ano, int incremento);
-int vdiaspormes(int dia, int mes, int ano);
-int digitardia();
-int digitarmes();
-int digitarano();
-void loopdata();
-void inserirData();
-void mostrarDatas();
+//Protótipos de funções//
+char* diadasemana(int dia, int mes, int ano);
+int anoBissexto(int ano);
+void ajustarData(int *dia, int *mes, int *ano, int intervalo);
+int verifdiaMes(int dia, int mes, int ano);
+int digitDia();
+int digitMes();
+int digitAno();
 void digitarData();
+void loopdata();
+void verificarData();
+void datasTreinos();
+void datasComuns();
 
-const char* nome_dia_da_semana(int dia_da_semana) {
-    switch (dia_da_semana) {
-        case 0: return "Domingo";
-        case 1: return "Segunda-feira";
-        case 2: return "Terca-feira";
-        case 3: return "Quarta-feira";
-        case 4: return "Quinta-feira";
-        case 5: return "Sexta-feira";
-        case 6: return "Sabado";
-        default: return "Erro";
-    }
-}
-void diadasemana(int dia, int mes, int ano, char *buffer) {
-    setlocale(LC_TIME, "pt_BR.UTF-8");
+char* diadasemana(int dia, int mes, int ano) {
+    static char diaSemana[14];
     struct tm data = {0};
     data.tm_mday = dia;
-    data.tm_mon = mes -1;
-    data.tm_year = ano -1900;
+    data.tm_mon = mes - 1;
+    data.tm_year = ano - 1900;
     mktime(&data);
     int dia_da_semana = data.tm_wday;
-    snprintf(buffer, 15, "%s", nome_dia_da_semana(dia_da_semana));
+
+    char *diaEscrito[] = {
+    "Domingo", "Segunda-feira", "Terca-feira", "Quarta-Feira", "Quinta-feira", "Sexta-feira", "Sabado"
+    };
+
+    if (dia_da_semana >= 0 && dia_da_semana <= 6) {
+        snprintf (diaSemana, sizeof(diaSemana), "%s", diaEscrito[dia_da_semana]);
+        return diaSemana;
+    } else {
+    return ("erro");
+    }   
 }
-int ano_bissexto(int ano) {
+int anoBissexto(int ano) {
     return (ano %4 == 0 && ano % 100 != 0) || (ano %400 == 0);
     }
-void ajustar_data(int *dia, int *mes, int *ano, int incremento) { //ajustar meses//
-        *dia += incremento;
+void ajustarData(int *dia, int *mes, int *ano, int intervalo) { //ajustar meses//
+        *dia += intervalo;
+    
     while (*dia > 28) {
-    if (*mes == 2) {
-        dias_no_mes = ano_bissexto(*ano) ? 29 : 28;
-    } else if (*mes == 4 || *mes == 6 || *mes == 9 || *mes == 11) {
-        dias_no_mes = 30;
-     } else { 
-        dias_no_mes = 31;
+    if (*mes == 2) {diasnoMes = anoBissexto(*ano) ? 29 : 28;
+    } else if (*mes == 4 || *mes == 6 || *mes == 9 || *mes == 11) { diasnoMes = 30;
+    } else {diasnoMes = 31;
      } 
-        if (*dia > dias_no_mes) {
-            *dia -= dias_no_mes;
-           (*mes)++;
-            if (*mes > 12) {
-                *mes = 1;
-                (*ano)++;//no limite de dias, ele avança ao próximo mês, e no limite de meses ele avança o ano.//
+    if (*dia > diasnoMes) {
+            *dia -= diasnoMes; (*mes)++;
+    if (*mes > 12) { *mes = 1; (*ano)++; //no limite de dias, ele avança ao próximo mês, e no limite de meses ele avança o ano.//
             }
         } else {
             break;
         }
     }
 }
-int vdiaspormes(int dia, int mes, int ano) {
+int verifdiaMes(int dia, int mes, int ano) {
     if (mes == 2) {
-         dias_no_mes = ano_bissexto(ano) ? 29 : 28;
-    } else if  (mes == 4 || mes==6 || mes==9 || mes == 11){   
-        dias_no_mes= 30;
+        diasnoMes = anoBissexto(ano) ? 29 : 28;
+    } else if (mes == 4 || mes==6 || mes==9 || mes == 11){   
+        diasnoMes = 30;
     } else if (mes >= 1 && mes <= 12) {
-        dias_no_mes = 31;
+        diasnoMes = 31;
     } else {
     return 1;
     }
-    return (dia < 1 || dia > dias_no_mes) ? 1 : 0;
+    return (dia < 1 || dia > diasnoMes);
 }
-  int digitardia(){
+  int digitDia(){
         while(1){
         printf ("\nDigite um dia de 1 a 31: ");
-        scanf ( "%i", &dia );
+        fflush(stdin); scanf ( "%i", &dia );
     if ( dia>=1 && dia<=31 ) {
         return 0;
     }
  }
 }
-int digitarmes() {
+int digitMes() {
         while(1){
         system("cls");
         printf("%.2i/ \b", dia);
         printf ("\n\nDigite um mês: "); 
         scanf ( "%i", &mes );
-    if ( mes>=1 && mes<=12 ) {
+    if ( mes >= 1 && mes<=12 ) {
         return 0;
     }
     }
 }
-int digitarano(){
+int digitAno(){
     while(1){
         system("cls");
         printf("%.2i/%.2i/ \b", dia,mes);
-        printf ("\n\nDigite um ano de 1900 a 3000: "); 
+        printf ("\n\nDigite um ano de 1900 a 2100: "); 
         scanf ( "%i", &ano );
-    if ( ano>=1900 && ano<=3000 ) {
+    if ( ano>=1900 && ano<=2100 ) {
         return 0;  
     }
     }
 }
 void digitarData() {
-    digitardia();
-    digitarmes();
-    digitarano();
+    digitDia(); digitMes(); digitAno();
 }
 void loopdata(){
-    while (vdiaspormes(dia, mes, ano) != 0 || (dia == 29 && mes==2 && !ano_bissexto(ano))) {
-         if (dia == 29 && mes == 2 && !ano_bissexto(ano)) {
+    while (verifdiaMes(dia, mes, ano) != 0 || (dia == 29 && mes==2 && !anoBissexto(ano))) {
+         if (dia == 29 && mes == 2 && !anoBissexto(ano)) {
                 printf("\nESSE ANO NÃO É BISSEXTO, INSIRA NOVAMENTE!\n");
             } else {
                 printf("\nDATA INVÁLIDA!!!\n");
@@ -135,11 +131,11 @@ void verificarData(){
         printf("Seja bem-vindo ao programa de verificação de datas!");
         digitarData();
         loopdata();
-    } while (dia == 29 && mes == 2 && !ano_bissexto(ano));
+    } while (dia == 29 && mes == 2 && !anoBissexto(ano));
     system("cls"); 
     printf("Data Fornecida: %02i/%02i/%04i", dia, mes, ano);
 }
-void mostrarDatas(){
+void datasTreinos(){
     FILE *arquivo = fopen("datastreinos.txt", "w");
     if (arquivo == NULL) {
         printf("\nErro ao abrir o arquivo!");
@@ -149,55 +145,71 @@ void mostrarDatas(){
     fprintf(arquivo, "\nOs esportes Atletismo, Natação, Rugby e Judô serão praticados no clube nas seguintes datas: ");
     fprintf(arquivo, "\n\n-----------------------------------------------------------------------------------------------------------------------\n");
     fprintf(arquivo, "|         ATLETISMO         ||           NATAÇÃO          ||           RUGBY            ||            JUDÔ            |\n");
+    fprintf(arquivo, "|         (2 dias)          ||          (3 dias)          ||          (5 dias)          ||          (9 dias)          |\n");
     fprintf(arquivo, "-----------------------------------------------------------------------------------------------------------------------\n");
     
-    int dia_atletismo = dia, mes_atletismo = mes, ano_atletismo = ano;
-    int dia_natacao = dia, mes_natacao = mes, ano_natacao = ano;
-    int dia_rugby = dia, mes_rugby = mes, ano_rugby = ano;	//divisão de datas uma por uma para não haver problema//
-    int dia_judo = dia, mes_judo = mes, ano_judo = ano;  	//na execução do código pra não afetar datas//
+    int diaAtletismo = dia, mesAtletismo = mes, anoAtletismo = ano;
+    int diaNatacao = dia, mesNatacao = mes, anoNatacao = ano;
+    int diaRugby = dia, mesRugby = mes, anoRugby = ano;	//divisão de datas uma por uma para não haver problema//
+    int diaJudo = dia, mesJudo = mes, anoJudo = ano;  	//na execução do código pra não afetar datas//
     
     for (int i = 0; i < maxAtletismo || i<maxNatacao || i <maxRugby || i <maxJudo; i++) {
     if (i < maxAtletismo) {
-        char dia_semana[14];
-            diadasemana(dia_atletismo, mes_atletismo, ano_atletismo, dia_semana);
-            fprintf(arquivo, " %02i/%02i/%04i - %-13s || ", dia_atletismo, mes_atletismo, ano_atletismo, dia_semana);
-            ajustar_data ( &dia_atletismo, &mes_atletismo, &ano_atletismo, +2);
+            fprintf(arquivo, " %02i/%02i/%04i - %-13s || ", diaAtletismo, mesAtletismo, anoAtletismo, diadasemana(diaAtletismo, mesAtletismo, anoAtletismo));
+            ajustarData ( &diaAtletismo, &mesAtletismo, &anoAtletismo, 2);
         } else {
         fprintf(arquivo, "                    ");
         }
-
-    if (i < maxNatacao) {
-        char dia_semana[14];    
-            diadasemana(dia_natacao, mes_natacao, ano_natacao, dia_semana);
-            fprintf(arquivo, "%02i/%02i/%04i - %-13s || ", dia_natacao, mes_natacao, ano_natacao, dia_semana);
-            ajustar_data (&dia_natacao, &mes_natacao, &ano_natacao, +3);
+    if (i < maxNatacao) {   
+            fprintf(arquivo, "%02i/%02i/%04i - %-13s || ", diaNatacao, mesNatacao, anoNatacao, diadasemana(diaNatacao, mesNatacao, anoNatacao));
+            ajustarData (&diaNatacao, &mesNatacao, &anoNatacao, 3);
         } else {
         fprintf(arquivo, "                    ");
         }
     if (i < maxRugby) {
-        char dia_semana[14];
-            diadasemana(dia_rugby, mes_rugby, ano_rugby, dia_semana);
-            fprintf(arquivo, "%02i/%02i/%04i - %-13s || ", dia_rugby, mes_rugby, ano_rugby, dia_semana);
-            ajustar_data (&dia_rugby, &mes_rugby, &ano_rugby, +5);
+            fprintf(arquivo, "%02i/%02i/%04i - %-13s || ", diaRugby, mesRugby, anoRugby, diadasemana(diaRugby, mesRugby, anoRugby));
+            ajustarData (&diaRugby, &mesRugby, &anoRugby, 5);
         } else {
         fprintf(arquivo, "                    ");
         }
-
     if (i < maxJudo) {
-        char dia_semana[14];
-            diadasemana(dia_judo, mes_judo, ano_judo, dia_semana);
-            fprintf(arquivo, "%02i/%02i/%04i - %-13s |\n", dia_judo, mes_judo, ano_judo, dia_semana);
-            ajustar_data (&dia_judo, &mes_judo, &ano_judo, +9);
+            fprintf(arquivo, "%02i/%02i/%04i - %-13s |\n", diaJudo, mesJudo, anoJudo, diadasemana(diaJudo, mesJudo, anoJudo));
+            ajustarData (&diaJudo, &mesJudo, &anoJudo, 9);
         } else {
         fprintf(arquivo, "\n");
         }
     }
-    fclose(arquivo);
-    printf("\n\nArquivo 'datastreinos.txt' gerado com sucesso! Obrigado!\n\n");
+    fclose(arquivo);    printf("\n\nArquivo 'datastreinos.txt' gerado com sucesso! Obrigado!");
 }
+void datasComuns() {
+    int diasPassados = 0;
+    int aumenta = 90;
+    int diaComum = dia, mesComum = mes, anoComum = ano;
+
+    FILE *arquivo = fopen("datascomuns.txt", "w");
+    if (arquivo == NULL) {
+        printf("\nErro ao abrir o arquivo!");
+        return;
+    }
+    fprintf(arquivo, "Data Fornecida: %02i/%02i/%04i; ", dia, mes, ano);
+    fprintf(arquivo, "\nOs esportes Atletismo, Natação, Rugby e Judô serão praticados juntos nas seguintes datas: ");
+    fprintf(arquivo, "\n\n--------------------------------------------------------------------------------------------------------------------");
+    fprintf(arquivo, "\n|                                    Os 4 esportes se encontram a cada %i dias                                     |", aumenta);
+    fprintf(arquivo, "\n--------------------------------------------------------------------------------------------------------------------\n");
+   
+    while (diasPassados<=365) {
+        fprintf(arquivo, "| %02i/%02i/%04i - %-13s                                                                                       |\n",
+                    diaComum, mesComum, anoComum, diadasemana(diaComum, mesComum, anoComum));
+        ajustarData(&diaComum, &mesComum, &anoComum, aumenta);
+        diasPassados+=aumenta;
+    }
+    fprintf(arquivo, "--------------------------------------------------------------------------------------------------------------------\n");
+    fclose(arquivo);   printf("\n\nArquivo 'datascomuns.txt' gerado com sucesso! Obrigado!");
+} 
 int main() {
     setlocale(LC_ALL, "pt_BR.UTF-8");
     verificarData();
-    mostrarDatas();
+    datasTreinos();
+    datasComuns();
     return 10;
 }
