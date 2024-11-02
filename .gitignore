@@ -1,2 +1,5 @@
 remote/
 
+* 
+!programsC/conversao.c 
+!programsC/programa001paulo.c 
