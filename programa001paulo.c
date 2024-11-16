@@ -1,5 +1,6 @@
 //Paulo Cavalcante, Tentativa de criar qualquer coisa//
 //mexendo pela 2ª vez, 29/10/2024, 02:55 da manhã//
+//arrumando os limpar terminal aqui dia 16/11/2024, 05:23 da manhã. 1,2 e 3 criados e arrumados, cotacao do mesmo dia, calculadora apenas co 2 números e boletim com uma matéria//
 //SANTOS FUTEBOL CLUBE//
 
 //Bibliotecas//
@@ -40,11 +41,22 @@ void limparTerminal();
 //functions//
 void limparTerminal(){
     system("cls");
+    }
+
+void encerrarPrograma(){
+    printf("\nEncerrando o programa...");
+    exit (0);
 }
+
+void login(){
+    printf("\nSeja bem-vindo(a), qual o seu nome? \n");
+    scanf("%s", &nome);
+}
+
 void convertDolarToReal(){
     printf("Insira a quantia de dólares que quer converter em reais: \n");
     scanf("%f",  &dolar);
-    system("cls");
+    limparTerminal();
     printf("Você inseriu a quantia de [%.2f] dólares", dolar);
     realConvert = (dolar * 5.7116);
     printf("\n\n%.2f dólares são %.2fR$ *;", dolar, realConvert);
@@ -53,7 +65,7 @@ void convertDolarToReal(){
 void convertDolarToEuro(){
     printf("Insira a quantia de dólares que quer converter em euros: \n");
     scanf("%f",  &dolar);
-    system("cls");
+    limparTerminal();
     printf("\nVocê inseriu a quantia de [%.2f] dólares", dolar);
         euroConvert = (dolar * 0.9252);
     printf("\n\n%.2f dólares são %.2f€ *", dolar, euroConvert);
@@ -62,7 +74,7 @@ void convertDolarToEuro(){
 void convertDolarToLibra(){
     printf("Insira a quantia de dólares que quer converter em libras esterlinas: \n");
     scanf("%f",  &dolar);
-    system("cls");
+    limparTerminal();
     printf("\nVocê inseriu a quantia de [%.2f] dólares", dolar);
         libraConvert = (dolar * 0.7716);
     printf("\n\n%.2f dólares são %.2f£ libras *", dolar, libraConvert);
@@ -71,7 +83,7 @@ void convertDolarToLibra(){
 void convertRealToDolar(){
     printf("Insira a quantia de reais que quer converter em dólares: \n");
     scanf("%f",  &real);
-    system("cls");
+    limparTerminal();
     printf("\nVocê inseriu a quantia de [%.2f] reais", real);
         dolarConvert = (real * 0.1751);
     printf("\n\n%.2f reais são %.2f$ *", real, dolarConvert);
@@ -80,7 +92,7 @@ void convertRealToDolar(){
 void convertRealToEuro(){
     printf("Insira a quantia de reais que quer converter em euros: \n");
     scanf("%f",  &real);
-    system("cls");
+    limparTerminal();
     printf("\nVocê inseriu a quantia de [%.2f] reais", real);
         euroConvert = (real * 0.1620);
     printf("\n\n%.2f reais são %.2f€ *;", real, euroConvert);
@@ -89,7 +101,7 @@ void convertRealToEuro(){
 void convertRealToLibra(){
     printf("Insira a quantia de reais que quer converter em libras: \n");
     scanf("%f",  &real);
-    system("cls");
+    limparTerminal();
     printf("\nVocê inseriu a quantia de [%.2f] reais", real);
         libraConvert = (real * 0.1351);
     printf("\n\n%.2f reais são %.2f£ *;", real, libraConvert);
@@ -98,7 +110,7 @@ void convertRealToLibra(){
 void convertEuroToDolar(){
     printf("Insira a quantia de euros que quer converter em dólares: \n");
     scanf("%f",  &euro);
-    system("cls");
+    limparTerminal();
     printf("\nVocê inseriu a quantia de [%.2f] euros ", euro);
         dolarConvert = (euro * 1.0807);
     printf("\n\n%.2f euros são %.2f$*", euro, dolarConvert);
@@ -108,7 +120,7 @@ void convertEuroToDolar(){
 void convertEuroToReal(){
     printf("Insira a quantia de euros que quer converter em reais: \n");
     scanf("%f",  &euro);
-    system("cls");
+    limparTerminal();
     printf("\nVocê inseriu a quantia de [%.2f] euros ", euro);
         realConvert = (euro * 6.1753);
     printf("\n\n%.2f euros são %.2fR$ *", euro, realConvert);
@@ -117,7 +129,7 @@ void convertEuroToReal(){
 void convertEuroToLibra(){
     printf("Insira a quantia de euros que quer converter em libras: \n");
     scanf("%f",  &euro);
-    system("cls");
+    limparTerminal();
     printf("\nVocê inseriu a quantia de [%.2f] euros ", euro);
         libraConvert = (euro * 0.8340);
     printf("\n\n%.2f euros são %.2f£ *", euro, libraConvert);
@@ -126,7 +138,7 @@ void convertEuroToLibra(){
 void convertLibraToDolar(){
     printf("Insira a quantia de libras que quer converter em dólares: \n");
     scanf("%f",  &libra);
-    system("cls");
+    limparTerminal();
     printf("\nVocê inseriu a quantia de [%.2f] libras", libra);
         dolarConvert = (libra * 1.2961);
     printf("\n\n%.2f libras são %.2f$ *", libra, dolarConvert);
@@ -135,7 +147,7 @@ void convertLibraToDolar(){
 void convertLibraToReal(){
     printf("Insira a quantia de libras que quer converter em reais: \n");
     scanf("%f",  &libra);
-    system("cls");
+    limparTerminal();
     printf("\nVocê inseriu a quantia de [%.2f] libras", libra);
         realConvert = (libra * 7.4019);
     printf("\n\n%.2f libras são %.2fR$ *", libra, realConvert);
@@ -144,7 +156,7 @@ void convertLibraToReal(){
 void convertLibraToEuro(){
     printf("Insira a quantia de libras que quer converter em euros: \n");
     scanf("%f",  &libra);
-    system("cls");
+    limparTerminal();
     printf("\nVocê inseriu a quantia de [%.2f] libras", libra);
         euroConvert = (libra * 1.1992);
     printf("\n\n%.2f libras são %.2f€ *", libra, euroConvert);
@@ -165,45 +177,55 @@ void convertLibraToEuro(){
          printf("O resultado mais o número adicionado é: %d\n", resultado);
     }
     printf("Quer inserir mais um número? \n"); printf("\nQuer inserir mais um número? \n");*/
-void encerrarPrograma(){
-    printf("\nEncerrando o programa...");
-    exit (0);
-}
+
 void adicao(){
-    printf("Insira o primeiro número da soma: \n");
+    limparTerminal();
+    printf("Você selecionou a opção 1 - Soma");
+    printf("\n\nInsira o primeiro número da soma: ");
     scanf("%d",  &numero1);
-    printf("\nQuer somar quanto ao %d: \n", numero1);
+    printf("\nQuer somar quanto ao %d: ", numero1);
     scanf("%d",&numero2);
     soma = (numero1 + numero2);
-    printf("O resultado da soma entre os dois números é: %d\n", soma);
+    printf("\nO resultado da soma entre os dois números é: %d + %d = %d",numero1,numero2, soma);
+    printf("\nResultado = %d\n", soma);
 }
 void subtracao(){
-    printf("Insira o primeiro número da operação: \n");
+    limparTerminal();
+    printf("Você selecionou a opção 2 - Subtração");
+    printf("\n\nInsira o primeiro número da operação: ");
     scanf("%d",  &numero1);
-    printf("\nSubtrair quanto de %d: \n", numero1);
+    printf("\nSubtrair quanto de %d: ", numero1);
     scanf("%d",&numero2);
     sub = (numero1 - numero2);
-    printf("O resultado é: %d - %d = %d\n",numero1,numero2, sub);
+    printf("\nO resultado da subtração é: %d - %d = %d",numero1,numero2, sub);
+    printf("\nResultado = %d\n", sub);
 }
 void multiplication(){
-    printf("Insira o primeiro número da que quer multiplicar: \n");
+    limparTerminal();
+    printf("Você selecionou a opção 3 - Multiplicação");
+    printf("\n\nInsira o primeiro número que quer multiplicar: ");
     scanf("%d",  &numero1);
-    printf("\nMultiplicar %d por qual número?\n", numero1);
+    printf("\nMultiplicar %d por qual número: ", numero1);
     scanf("%d",&numero2);
     multi = (numero1 * numero2);
-    printf("A multiplicação é: %d x %d = %d",numero1,numero2, multi);
+    printf("\nA multiplicação é: %d x %d = %d",numero1,numero2, multi);
+    printf("\nResultado = %d\n", multi);
 }
 void divisao(){
-    printf("Insira o primeiro número da divisão: \n");
+    limparTerminal();
+    printf("Você selecionou a opção 4 - Divisão");
+    printf("\n\nInsira o primeiro número da divisão: ");
     scanf("%d",  &numero1);
-    printf("\nDividir %d por qual número?\n", numero1);
+    printf("\nDividir %d por qual número: ", numero1);
     scanf("%d",&numero2);
     division = (numero1 / numero2);
     resto = (numero1 % numero2);
-    printf("O resultado da divisão é: %d / %d = %d, e o resto %d\n",numero1,numero2, division, resto);
+    printf("\nO resultado da divisão é: %d / %d = %d, e o resto %d\n",numero1,numero2, division, resto);
 }
 void potenciaDois(){
-    printf("Insira o número que quer elevar na potência de base² \n");
+    limparTerminal();
+    printf("Você selecionou a opção 5 - Potência de base²");
+    printf("\nInsira o número que quer elevar na potência de base²: \n");
     scanf("%d",  &numero1);
     potencia = (numero1 * numero1);
     printf("O número %d ao quadrado é: %d\n",numero1, potencia);
@@ -238,11 +260,14 @@ void escolhaCalculadora(int escCalculadora){
             potenciaDois();
             encerrarPrograma();
         case 6:
-            system("cls");
-            printf("Você retornou ao menu das funcionalidades do programa");
+            limparTerminal();
+            printf("Você selecionou a opção 6 - Retronar à tela inicial.");
+            printf("\nVocê retornou ao menu das funcionalidades do programa.");
             funcionalidades();
             break;
         case 0:
+            limparTerminal();
+            printf("Você selecionou a opção 0 - Encerrar o programa.");
             encerrarPrograma();
     }
 }
@@ -258,6 +283,9 @@ void escolhaInicial(int inicialEsc){
             boletim();
             break;
         case 4:
+            printf("Em desenvolvimento...");
+            encerrarPrograma();
+        case 5: 
             printf("Em desenvolvimento...");
             encerrarPrograma();
         case 0 :
@@ -331,16 +359,18 @@ void escolhaFinanceiro(int escFinanceira) {
 void funcionalidades(){
     printf("\n\n            1 - Financeiro ");
     printf("\n            2 - Calculadora simples ");
-    printf("\n            3 - Boletim com médias ");
+    printf("\n            3 - Boletim com média e faltas ");
     printf("\n            4 - Em desenvolvimento ");
+    printf("\n            5 - Em desenvolvimento ");
     printf("\n            0 - Encerrar o programa \n");
     scanf("%i", &inicialEsc);
     escolhaInicial(inicialEsc);
  }
 
 void menuFinanceiro() { 
-    system("cls");
-    printf("Seja bem-vindo(a) ao programa de conversão de moedas Real/Dólar/Euro/Libra!!!");
+    limparTerminal();
+    printf("\nVocê selecionou a opção 1 - Financeiro:");
+    printf("\n%s, seja bem-vindo(a) ao programa de conversão de moedas Real/Dólar/Euro/Libra!!!",nome);
     printf("\nEscolha uma opção a seguir:");
     printf("\nAperte qualquer tecla...\n");
     getch();
@@ -363,8 +393,9 @@ void menuFinanceiro() {
 }
 
 void menuCalculadora(){
-    system("cls");
-    printf("Seja bem-vindo(a) a calculadora %s!!!", nome);
+    limparTerminal();
+    printf("\nVocê selecionou a opção 2 - Calculadora simples:");
+    printf("\n%s, seja bem-vindo(a) a calculadora!!!", nome);
     printf("\nQual operação deseja efetuar: ");
     printf("\nAperte qualquer tecla...\n");
     getch();
@@ -379,11 +410,6 @@ void menuCalculadora(){
     escolhaCalculadora(escCalculadora);
 }
 
-void login(){
-    printf("\nSeja bem-vindo(a), qual o seu nome? \n");
-    scanf("%s", &nome);
-}
-
 void boletim(){
     float nota1, nota2, trabalho, media,aMais, faltouA, faltouIfa; 
     int faltas, restantes, ifa, aprovado;
@@ -391,7 +417,9 @@ void boletim(){
     ifa = 4;
 
     limparTerminal();
-    printf("Ver se aluno foi aprovado por média e faltas");
+    printf("\nVocê selecionou a opção 3 - Boletim com média e faltas:");
+    printf("Ver se aluno x foi aprovado por média e faltas");
+    getch();
         printf("\nQual o número de faltas no semestre: \n");
         while(1){
         scanf("%i", &faltas);
@@ -403,12 +431,12 @@ void boletim(){
             printf("\n\nInsira a quantidade de faltas novamente: \n");
         }
     } restantes = (23 - faltas);
-       printf("\n\nInsira a Nota da Prova 1: \n");
+       printf("\n\nInsira a Nota da Prova 1: ");
        while(1){
         scanf("%f", &nota1); 
             if(nota1 >=0 && nota1<=10){
-                printf("\nNota válida!!!");
-                printf("\nProva 1: %.2f", nota1);
+                printf("Nota válida!!!");
+                printf("\n\nProva 1: %.2f", nota1);
                 break;
         } else{
             printf("\nNOTA INVÁLIDA!!!");
@@ -419,8 +447,8 @@ void boletim(){
     while(1){
         scanf("%f", &nota2);
         if(nota2 >=0 && nota2 >=0){
-            printf("\nNota válida!!!");
-            printf("\nProva 2: %.2f", nota2);
+            printf("Nota válida!!!");
+            printf("\n\nProva 2: %.2f", nota2);
             break;
     } else {
         printf("\nNOTA INVÁLIDA!!!");
@@ -432,7 +460,7 @@ void boletim(){
         scanf("%f", &trabalho);
             if(trabalho >=0 && trabalho>=0){
             printf("Nota válida!!!");
-            printf("\nTrabalho Final: %.2f", trabalho);
+            printf("\n\nTrabalho Final: %.2f", trabalho);
             break;
         } else{
             printf("\nNOTA INVÁLIDA!!!");
@@ -440,7 +468,7 @@ void boletim(){
             }
         }
         media = ((nota1 + nota2 + trabalho) / 3 );
-            printf("\n\nMédia do Semestre: %.2f", media);
+            printf("\n\nMédia do Semestre: N1: %.2f, N2: %.2f, T: %.2f / 3 = %.2f", nota1, nota2, trabalho, media);
         faltouA = (aprovado - media);
         faltouIfa = (ifa - media);
         aMais = (media - aprovado);
@@ -451,7 +479,7 @@ void boletim(){
             else if (faltas<=23 && faltas>=0){
                 if(media >= 6 && media <=10){
                 printf("\n\nParabéns, aprovado com média %.2f!!!", media);
-                printf("\nVocê conseguiu %.2f pontos a mais do que o necessário para passar!!", aMais);
+                printf("\nVocê conseguiu %.2f pontos a mais do que a média necessária para passar!!", aMais);
                 printf("\nVocê ficou com %d faltas para gastar!!!", restantes);
             }
             else if(media <6 && media>=4) {
@@ -473,7 +501,7 @@ void boletim(){
 
 //main executando tudo//
 int main() {
-    while(1){
+    while(1) {
     menuInicial();
     } 
     return 0;
