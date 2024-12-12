@@ -8,8 +8,8 @@
 #include<stdlib.h>
 
 //variáveis globais//
-float real, dolar, euro, libra, realConvert, dolarConvert, euroConvert, libraConvert;
-int escFinanceira, inicialEsc,escCalculadora;
+float real, dolar, euro, libra, realConvert, dolarConvert, euroConvert, libraConvert, celsius, fahrenheit, kelvin, celsiusConvert, fahrenheitConvert, kelvinConvert;
+int escFinanceira, inicialEsc,escCalculadora, escTemperatura;
 int soma, sub, multi,division, potencia, numero1, numero2, continuarOperacao, numeroProx, resultado, resto;
 int fecharOuNao;
 char nome[20];
@@ -30,9 +30,12 @@ void convertLibraToEuro();
 void menuInicial();
 void menuFinanceiro();
 void menuCalculadora();
+void menuTemperatura();
 void escolhaInicial(int inicialEsc);
 void escolhaFinanceiro(int escFinanceira);
 void escolhaCalculadora(int escCalculadora);
+void escolhaTemperatura(int escTemperatura);
+void convertCelsiusToFahrenheit();
 void funcionalidades();
 void login();
 void encerrarPrograma();
@@ -242,6 +245,14 @@ void potenciaDois(){
                     printf("Encerrando o progarma...");
             } exit(0);
 }*/
+
+void convertCelsiusToFahrenheit(){
+    printf("Qual  Temperatura  °C, você deseja converter a  °F\n");
+    scanf("%f", &celsius);
+    limparTerminal();
+    fahrenheitConvert = ((celsius * 1.8)+32);
+    printf("%.1f graus Celsius em Fahrenheit é igual a %.1f°F", celsius, fahrenheitConvert);
+}
 void escolhaCalculadora(int escCalculadora){
     switch(escCalculadora){
         case 1:
@@ -261,7 +272,7 @@ void escolhaCalculadora(int escCalculadora){
             encerrarPrograma();
         case 6:
             limparTerminal();
-            printf("Você selecionou a opção 6 - Retronar à tela inicial.");
+            printf("Você selecionou a opção 6 - Retornar à tela inicial.");
             printf("\nVocê retornou ao menu das funcionalidades do programa.");
             funcionalidades();
             break;
@@ -283,12 +294,14 @@ void escolhaInicial(int inicialEsc){
             boletim();
             break;
         case 4:
-            printf("Em desenvolvimento...");
-            encerrarPrograma();
+           menuTemperatura();
+            break;
         case 5: 
             printf("Em desenvolvimento...");
             encerrarPrograma();
         case 0 :
+            limparTerminal();
+            printf("Você selecionou a opção 0 - Encerrar o programa.");
             encerrarPrograma();
         default: 
             printf("OPÇÃO INVÁLIDA!!!!");
@@ -335,9 +348,14 @@ void escolhaFinanceiro(int escFinanceira) {
             convertLibraToEuro();
             encerrarPrograma();
         case 13:
+            limparTerminal();
+            printf("Você selecionou a opção 6 - Retornar à tela inicial.");
+            printf("\nVocê retornou ao menu das funcionalidades do programa.");
             funcionalidades();
-            encerrarPrograma();
+            break;
         case 0 :
+            limparTerminal();
+            printf("Você selecionou a opção 0 - Encerrar o programa.");
             encerrarPrograma();
     default: 
         printf("OPÇÃO INVÁLIDA!!!!");
@@ -345,7 +363,33 @@ void escolhaFinanceiro(int escFinanceira) {
         getch();
     }
     }
+void escolhaTemperatura(int escTemperatura){
+    switch(escTemperatura){
+            case 1:
+        convertCelsiusToFahrenheit();
+        encerrarPrograma();
+            case 2:
 
+            case 3:
+
+            case 4:
+
+            case 5:
+
+            case 6:
+
+            case 7:
+        limparTerminal();
+        printf("Você selecionou a opção 6 - Retornar à tela inicial.");
+        printf("\nVocê retornou ao menu das funcionalidades do programa.");
+        funcionalidades();
+        break;
+            case 0:
+        limparTerminal();
+        printf("Você selecionou a opção 0 - Encerrar o programa.");
+        encerrarPrograma();
+    }
+}
 //saída da tela e pá//
  void menuInicial(){ 
     limparTerminal();
@@ -356,11 +400,12 @@ void escolhaFinanceiro(int escFinanceira) {
     getch();
     funcionalidades();
  }
+
 void funcionalidades(){
     printf("\n\n            1 - Financeiro ");
     printf("\n            2 - Calculadora simples ");
     printf("\n            3 - Boletim com média e faltas ");
-    printf("\n            4 - Em desenvolvimento ");
+    printf("\n            4 - Conversor de Temperatura ");
     printf("\n            5 - Em desenvolvimento ");
     printf("\n            0 - Encerrar o programa \n");
     scanf("%i", &inicialEsc);
@@ -499,6 +544,24 @@ void boletim(){
     encerrarPrograma();
 }
 
+void menuTemperatura(){
+    limparTerminal();
+    printf("\nVocê selecionou a opção 4 - Conversor de Temperatura: ");
+    printf("\n%s, seja bem-vindo(a) ao programa de conversão de Temperatura Celsius/Fahrenheit/Kelvin!!!",nome);
+    printf("\nEscolha uma opção a seguir:");
+    printf("\nAperte qualquer tecla...\n");
+    getch();
+    printf("\n            1. Converter Celsius para Fahrenheit");
+    printf("\n            2. Converter Celsius para Kelvin");
+    printf("\n            3. Converter Fahrenheit para Celsius");
+    printf("\n            4. Converter Fahrenheit para Kelvin");
+    printf("\n            5. Converter Kelvin para Celsius");
+    printf("\n            6. Converter Kelvin para Fahrenheit");
+    printf("\n            7. Retornar ao menu inicial");
+    printf("\n            0. Sair do Programa\n");
+    scanf("%i", &escTemperatura);
+    escolhaTemperatura(escTemperatura);
+}
 //main executando tudo//
 int main() {
     while(1) {
