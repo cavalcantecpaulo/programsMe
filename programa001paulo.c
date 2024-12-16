@@ -6,6 +6,7 @@
 //Bibliotecas//
 #include<stdio.h>
 #include<stdlib.h>
+#include<ctype.h>
 
 //variáveis globais//
 float real, dolar, euro, libra, realConvert, dolarConvert, euroConvert, libraConvert, celsius, fahrenheit, kelvin, celsiusConvert, fahrenheitConvert, kelvinConvert;
@@ -36,6 +37,11 @@ void escolhaFinanceiro(int escFinanceira);
 void escolhaCalculadora(int escCalculadora);
 void escolhaTemperatura(int escTemperatura);
 void convertCelsiusToFahrenheit();
+void convertCelsiusToKelvin();
+void convertFahrenheitToCelsius();
+void convertFahrenheitToKelvin();
+void convertKelvinToCelsius();
+void convertKelvinToFahrenheit();
 void funcionalidades();
 void login();
 void encerrarPrograma();
@@ -53,7 +59,7 @@ void encerrarPrograma(){
 
 void login(){
     printf("\nSeja bem-vindo(a), qual o seu nome? \n");
-    scanf("%s", &nome);
+    scanf("%s", nome);
 }
 
 void convertDolarToReal(){
@@ -253,6 +259,34 @@ void convertCelsiusToFahrenheit(){
     fahrenheitConvert = ((celsius * 1.8)+32);
     printf("%.1f graus Celsius em Fahrenheit é igual a %.1f°F", celsius, fahrenheitConvert);
 }
+void convertCelsiusToKelvin(){
+    printf("Qual  Temperatura  °C, você deseja converter a  °K\n");
+    scanf("%f", &celsius);
+    limparTerminal();
+    kelvinConvert = (celsius + 273.15);
+    printf("%.1f graus Celsius em Fahrenheit é igual a %.2f°K", celsius, kelvinConvert);
+}
+void convertFahrenheitToCelsius(){
+    printf("Qual  Temperatura  °F, você deseja converter a  °C\n");
+    scanf("%f", &fahrenheit);
+    limparTerminal();
+    celsiusConvert = ((fahrenheit-32) / 1.8);
+    printf("%.1f graus Fahrenheit em Celsius é igual a %.1f°C", fahrenheit, celsiusConvert);
+}
+void convertFahrenheitToKelvin(){
+    printf("Qual  Temperatura  °F, você deseja converter a  °K\n");
+    scanf("%f", &fahrenheit);
+    limparTerminal();
+    kelvinConvert = ((fahrenheit + 459.67) * 5/9);
+    printf("%.2f graus Fahrenheit em Kelvin é igual a %.2f°C", fahrenheit, kelvinConvert);
+}
+void convertKelvinToCelsius(){
+
+}
+void convertKelvinToFahrenheit(){
+
+}
+
 void escolhaCalculadora(int escCalculadora){
     switch(escCalculadora){
         case 1:
@@ -286,16 +320,16 @@ void escolhaInicial(int inicialEsc){
     switch(inicialEsc) {
         case 1:
             menuFinanceiro();
-            break;
+            encerrarPrograma();
         case 2:
             menuCalculadora();
-            break;
+            encerrarPrograma();
         case 3:
             boletim();
-            break;
+            encerrarPrograma();
         case 4:
            menuTemperatura();
-            break;
+            encerrarPrograma();
         case 5: 
             printf("Em desenvolvimento...");
             encerrarPrograma();
@@ -369,15 +403,20 @@ void escolhaTemperatura(int escTemperatura){
         convertCelsiusToFahrenheit();
         encerrarPrograma();
             case 2:
-
+        convertCelsiusToKelvin();
+        encerrarPrograma();
             case 3:
-
+        convertFahrenheitToCelsius();
+        encerrarPrograma();
             case 4:
-
+        convertFahrenheitToKelvin();
+        encerrarPrograma();
             case 5:
-
+        convertKelvinToCelsius();
+        encerrarPrograma();
             case 6:
-
+        convertKelvinToFahrenheit();
+        encerrarPrograma();
             case 7:
         limparTerminal();
         printf("Você selecionou a opção 6 - Retornar à tela inicial.");
